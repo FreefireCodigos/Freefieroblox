@@ -1,0 +1,86 @@
+/* ===== ESTILO GENERAL ===== */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f6f8;
+    color: #1f2937;
+    line-height: 1.7;
+}
+
+/* ===== HEADER ===== */
+header {
+    background-color: #111827;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 28px;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: #e5e7eb;
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #93c5fd;
+}
+
+/* ===== CONTENIDO ===== */
+main {
+    max-width: 1100px;
+    margin: 30px auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 6px;
+}
+
+/* ===== TÍTULOS ===== */
+h2 {
+    color: #111827;
+    margin-top: 40px;
+}
+
+/* ===== LINKS ===== */
+a {
+    color: #2563eb;
+}
+
+a:hover {
+    color: #1d4ed8;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background-color: #111827;
+    color: #d1d5db;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    margin-top: 40px;
+}
+
+footer a {
+    color: #93c5fd;
+}
+
+/* ===== RESPONSIVE (MÓVIL) ===== */
+@media (max-width: 768px) {
+    main {
+        margin: 10px;
+        padding: 20px;
+    }
+
+    nav a {
+        display: block;
+        margin: 8px 0;
+    }
+}
