@@ -1,86 +1,115 @@
-/* ===== ESTILO GENERAL ===== */
+/* ===== RESET BÁSICO ===== */
+* {
+    box-sizing: border-box;
+}
+
+/* ===== CUERPO ===== */
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f4f6f8;
-    color: #1f2937;
-    line-height: 1.7;
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+    color: #e5e7eb;
+    line-height: 1.8;
 }
 
 /* ===== HEADER ===== */
 header {
-    background-color: #111827;
-    padding: 20px;
+    background: linear-gradient(90deg, #111827, #020617);
+    padding: 30px 20px;
+    border-bottom: 1px solid #1f2937;
 }
 
 header h1 {
     margin: 0;
+    font-size: 32px;
     color: #ffffff;
-    font-size: 28px;
 }
 
+/* ===== NAV ===== */
 nav {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 nav a {
-    color: #e5e7eb;
+    color: #9ca3af;
     text-decoration: none;
-    margin-right: 15px;
-    font-weight: bold;
+    margin-right: 18px;
+    font-weight: 600;
+    transition: color 0.2s ease;
 }
 
 nav a:hover {
-    color: #93c5fd;
+    color: #38bdf8;
 }
 
-/* ===== CONTENIDO ===== */
+/* ===== CONTENEDOR ===== */
 main {
-    max-width: 1100px;
-    margin: 30px auto;
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 6px;
+    max-width: 1150px;
+    margin: 40px auto;
+    background: #020617;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
 }
 
 /* ===== TÍTULOS ===== */
 h2 {
-    color: #111827;
-    margin-top: 40px;
+    color: #f9fafb;
+    margin-top: 50px;
+    border-left: 5px solid #38bdf8;
+    padding-left: 15px;
+}
+
+/* ===== TEXTO ===== */
+p {
+    color: #d1d5db;
+    font-size: 17px;
 }
 
 /* ===== LINKS ===== */
 a {
-    color: #2563eb;
+    color: #38bdf8;
 }
 
 a:hover {
-    color: #1d4ed8;
+    color: #7dd3fc;
+}
+
+/* ===== LISTAS ===== */
+ul li {
+    margin-bottom: 10px;
 }
 
 /* ===== FOOTER ===== */
 footer {
-    background-color: #111827;
-    color: #d1d5db;
+    background: #020617;
+    color: #9ca3af;
     text-align: center;
-    padding: 20px;
+    padding: 30px 15px;
     font-size: 14px;
-    margin-top: 40px;
+    border-top: 1px solid #1f2937;
 }
 
-footer a {
-    color: #93c5fd;
+/* ===== SEPARADOR ===== */
+hr {
+    border: none;
+    border-top: 1px solid #1f2937;
+    margin: 30px 0;
 }
 
-/* ===== RESPONSIVE (MÓVIL) ===== */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     main {
-        margin: 10px;
-        padding: 20px;
+        margin: 15px;
+        padding: 25px;
     }
 
     nav a {
         display: block;
-        margin: 8px 0;
+        margin: 10px 0;
+    }
+
+    header h1 {
+        font-size: 26px;
     }
 }
