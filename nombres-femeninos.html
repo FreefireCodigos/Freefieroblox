@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>NickFinder - Nombres Femeninos</title>
+    <style>
+        :root { --bg-body: #fdf4f6; --sidebar-bg: #ffffff; --primary: #e84393; --active: #d63031; --accent: #ff7675; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg-body); margin: 0; display: flex; color: #333; }
+        /* SIDEBAR */
+        nav.sidebar { width: 260px; background: var(--sidebar-bg); height: 100vh; position: fixed; border-right: 1px solid #ddd; overflow-y: auto; }
+        .sidebar-item { display: block; padding: 12px 20px; color: #555; text-decoration: none; transition: 0.3s; border-left: 4px solid transparent; }
+        .sidebar-item:hover { background: #ffeaa7; }
+        .sidebar-item.active { background: var(--active); color: white; border-left: 4px solid var(--primary); }
+        .sidebar-category { background: #ffeaa7; padding: 8px 20px; font-size: 0.8rem; font-weight: bold; color: #d63031; text-transform: uppercase; margin-top: 10px;}
+        /* MAIN */
+        main { margin-left: 260px; flex-grow: 1; padding: 30px; }
+        header { text-align: center; margin-bottom: 30px; }
+        .search-area { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: flex; gap: 10px; max-width: 700px; margin: 0 auto; }
+        .search-area input { flex-grow: 1; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; }
+        .search-area button { background: var(--primary); color: white; border: none; padding: 0 25px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .section-title { font-size: 1.4rem; margin: 30px 0 15px; border-bottom: 2px solid #ddd; padding-bottom: 5px; }
+        .nick-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
+        .nick-card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.2s; }
+        .nick-card:hover { transform: scale(1.02); border: 1px solid var(--primary); }
+        .copy-icon { font-size: 0.7rem; color: var(--primary); font-weight: bold; background: #ffeaa7; padding: 4px 8px; border-radius: 4px; }
+        #toast { position: fixed; top: 20px; right: 20px; background: #e84393; color: white; padding: 15px 25px; border-radius: 5px; display: none; z-index: 1000; }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div style="padding: 20px; font-weight: bold; color: #d63031; font-size: 1.2rem;">NickFinder 3.0</div>
+        <a href="simbolos.html" class="sidebar-item">💎 Fuente y símbolos</a>
+        <a href="combinar.html" class="sidebar-item">🔗 Combinar dos nombres</a>
+        
+        <div class="sidebar-category">Categorías</div>
+        <a href="nombres-masculinos.html" class="sidebar-item">♂️ Nombres masculinos</a>
+        <a href="nombres-femeninos.html" class="sidebar-item active">♀️ Nombres femeninos</a>
+    </nav>
+
+    <main>
+        <header>
+            <h1>Generador <span style="color:var(--primary)">Femenino</span></h1>
+            <div class="search-area">
+                <input type="text" id="mainInput" placeholder="Escribe tu nombre de reina...">
+                <button onclick="generateCustom()">DECORAR</button>
+            </div>
+        </header>
+
+        <div id="customSection" style="display:none;">
+            <h2 class="section-title">✨ Tu Estilo</h2>
+            <div class="nick-grid" id="customResults"></div>
+        </div>
+
+        <h2 class="section-title">🌸 Tops Femeninos</h2>
+        <div class="nick-grid" id="femGrid"></div>
+    </main>
+
+    <div id="toast">Copiado ✔️</div>
+
+    <script>
+        const femNicks = [
+            "꧁✿Q U E E N✿꧂", "La Tóxica ⚠️", "👑 R E I N A 👑", "꧁༺D I O S A༻꧂",
+            "P R I N C E S S 💖", "❀ Ｂ Ｅ Ｌ Ｌ Ａ ❀", "A T H E N A ⚔️", "V A L K Y R I E 🦋",
+            "L U N A 🌙", "E S T R E L L A ✨", "B a b y G i r l 🧸", "M E D U S A 🐍",
+            "C L E O P A T R A 𓋹", "꧁༒M Y S T I C༒꧂", "W I T C H 🔮", "S W E E T 🍭",
+            "A N G E L 👼", "D E M O N 😈", "K I T T Y 🐱", "꧁✿FLOR✿꧂"
+        ];
+        const styles = [
+            ["꧁✿", "✿꧂"], ["👑", "👑"], ["❀", "❀"], ["🦋", "🦋"], ["💖", "💖"], 
+            ["『", "』"], ["★", "★"], ["🌙", "🌙"], ["🧸", "🧸"], ["🌸", "🌸"]
+        ];
+
+        function load(list, id) {
+            const c = document.getElementById(id);
+            list.forEach(n => { c.innerHTML += `<div class="nick-card" onclick="copy('${n}')"><span>${n}</span> <span class="copy-icon">COPIAR</span></div>`; });
+        }
+
+        function generateCustom() {
+            const name = document.getElementById('mainInput').value;
+            if(!name) return;
+            const c = document.getElementById('customResults'); c.innerHTML = ""; document.getElementById('customSection').style.display = "block";
+            styles.forEach(s => {
+                let f = `${s[0]} ${name} ${s[1]}`;
+                c.innerHTML += `<div class="nick-card" onclick="copy('${f}')"><span>${f}</span> <span class="copy-icon">COPIAR</span></div>`;
+            });
+        }
+
+        function copy(t) {
+            navigator.clipboard.writeText(t);
+            let m = document.getElementById('toast'); m.style.display = 'block'; setTimeout(() => m.style.display = 'none', 1500);
+        }
+        load(femNicks, 'femGrid');
+    </script>
+</body>
+</html>
