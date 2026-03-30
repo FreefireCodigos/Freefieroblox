@@ -1,70 +1,289 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FreeFire y Roblox | Noticias, Guías y Contenido Actualizado</title>
-<meta name="description" content="Portal completo con noticias, guías, análisis y recursos actualizados de Free Fire y Roblox. Información clara, extensa y profesional.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador Pro de Nicks e Símbolos</title>
+    <style>
+        /* CONFIGURACIÓN GENERAL */
+        :root {
+            --bg-body: #0f0f1a;
+            --bg-card: #1c1c2d;
+            --primary: #00d4ff;
+            --secondary: #7000ff;
+            --text: #e0e0e0;
+            --accent: #ff007a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(45deg, #161625, #1c1c2d);
+            border-bottom: 2px solid var(--primary);
+            margin-bottom: 30px;
+        }
+
+        h1 { margin: 0; color: var(--primary); font-size: 2.5rem; text-transform: uppercase; }
+        p { opacity: 0.8; }
+
+        /* BUSCADOR */
+        .search-box {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .search-box input {
+            width: 60%;
+            padding: 15px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            background: #2a2a40;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .search-box button {
+            padding: 15px 25px;
+            border: none;
+            background: var(--primary);
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 0 5px 5px 0;
+        }
+
+        /* DISEÑO DE COLUMNAS (Estilo Nickfinder) */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 800px) {
+            .main-layout { grid-template-columns: 1fr; }
+        }
+
+        /* TARJETAS Y LISTAS */
+        section {
+            background: var(--bg-card);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+            font-size: 1.2rem;
+            margin-top: 0;
+            color: var(--accent);
+        }
+
+        .nick-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .nick-item {
+            background: #25253b;
+            padding: 12px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .nick-item:hover {
+            border-color: var(--primary);
+            background: #2d2d4a;
+        }
+
+        .symbol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+            gap: 8px;
+        }
+
+        .symbol-item {
+            background: #25253b;
+            text-align: center;
+            padding: 10px 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .symbol-item:hover { background: var(--secondary); }
+
+        /* BOTÓN COPIAR */
+        .copy-badge {
+            font-size: 0.7rem;
+            background: var(--primary);
+            color: #000;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            opacity: 0.5;
+            font-size: 0.9rem;
+        }
+
+        /* NOTIFICACIÓN FLOTANTE */
+        #toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: none;
+            z-index: 1000;
+        }
+    </style>
 </head>
 <body>
 
 <header>
-<h1>FreeFire & Roblox Hub</h1>
-<nav>
-<a href="index.html">Inicio</a> |
-<a href="freefire.html">Free Fire</a> |
-<a href="roblox.html">Roblox</a> |
-<a href="news-freefire.html">Noticias FF</a> |
-<a href="news-roblox.html">Noticias Roblox</a>
-</nav>
-<hr>
+    <h1>NICK<span style="color:white">MASTER</span> PRO</h1>
+    <p>La colección más completa de símbolos, letras y apodos insanos</p>
+    
+    <div class="search-box">
+        <input type="text" id="userInput" placeholder="Escribe tu nombre aquí...">
+        <button onclick="customNick()">GENERAR</button>
+    </div>
 </header>
 
-<main>
+<div class="container">
+    <div class="main-layout">
+        
+        <div class="left-col">
+            <section>
+                <h2>🔥 APODOS MÁS POPULARES</h2>
+                <div class="nick-list" id="popularList">
+                    </div>
+            </section>
 
-<section>
-<h2>Bienvenido a FreeFire & Roblox Hub</h2>
-<p>
-Este sitio ha sido creado como una plataforma informativa independiente dedicada a dos de los videojuegos más influyentes de la última década: <strong>Free Fire</strong> y <strong>Roblox</strong>. Nuestro objetivo es ofrecer contenido claro, profundo y actualizado para jugadores nuevos, intermedios y avanzados, evitando información superficial o repetitiva.
-</p>
-<p>
-A diferencia de otras páginas centradas únicamente en descargas o imágenes, aquí encontrarás análisis detallados, noticias relevantes, contexto histórico, guías prácticas y recursos pensados para mejorar tu experiencia como jugador y como creador de contenido.
-</p>
-<p>
-La industria del gaming ha evolucionado enormemente, y títulos como Free Fire y Roblox no solo representan entretenimiento, sino también comunidades globales, economías digitales y espacios de creación social. Este sitio aborda esa realidad desde una perspectiva informativa y responsable.
-</p>
-</section>
+            <section>
+                <h2>⚡ DECORACIONES AUTOMÁTICAS</h2>
+                <div class="nick-list" id="customGenerated">
+                    <p style="grid-column: 1/-1; opacity: 0.5;">Escribe algo arriba para decorar...</p>
+                </div>
+            </section>
+        </div>
 
-<section>
-<h2>¿Qué encontrarás en este sitio?</h2>
-<p>
-Nuestro contenido se organiza en secciones claras para facilitar la navegación y el acceso a la información:
-</p>
-<ul>
-<li><strong>Noticias actualizadas:</strong> Cambios recientes, eventos oficiales y novedades relevantes.</li>
-<li><strong>Guías y análisis:</strong> Explicaciones detalladas para entender mecánicas, estrategias y sistemas.</li>
-<li><strong>Contexto y evolución:</strong> Cómo estos juegos han crecido y por qué siguen siendo populares.</li>
-<li><strong>Comunidad:</strong> El impacto social y cultural de Free Fire y Roblox.</li>
-</ul>
-</section>
+        <div class="right-col">
+            <section>
+                <h2>✨ SÍMBOLOS TOP</h2>
+                <div class="symbol-grid">
+                    <div class="symbol-item" onclick="copyText('꧁')">꧁</div>
+                    <div class="symbol-item" onclick="copyText('꧂')">꧂</div>
+                    <div class="symbol-item" onclick="copyText('亗')">亗</div>
+                    <div class="symbol-item" onclick="copyText('⚡')">⚡</div>
+                    <div class="symbol-item" onclick="copyText('☬')">☬</div>
+                    <div class="symbol-item" onclick="copyText('༒')">༒</div>
+                    <div class="symbol-item" onclick="copyText('☠︎︎')">☠︎︎</div>
+                    <div class="symbol-item" onclick="copyText('☯︎')">☯︎</div>
+                    <div class="symbol-item" onclick="copyText('Ⓔ')">Ⓔ</div>
+                    <div class="symbol-item" onclick="copyText('𐄠')">𐄠</div>
+                    <div class="symbol-item" onclick="copyText('〆')">〆</div>
+                    <div class="symbol-item" onclick="copyText('ꪖ')">ꪖ</div>
+                </div>
+            </section>
 
-<section>
-<h2>Explorar ahora</h2>
-<p>
-Puedes comenzar visitando nuestras secciones principales:
-</p>
-<ul>
-<li><a href="freefire.html">Todo sobre Free Fire</a></li>
-<li><a href="roblox.html">Todo sobre Roblox</a></li>
-</ul>
-</section>
+            <section>
+                <h2>🎮 CLANES / TAGS</h2>
+                <div class="nick-list" style="grid-template-columns: 1fr;">
+                    <div class="nick-item" onclick="copyText('『G9』')">『G9』 <span class="copy-badge">COPIAR</span></div>
+                    <div class="nick-item" onclick="copyText('SᴷS')">SᴷS <span class="copy-badge">COPIAR</span></div>
+                    <div class="nick-item" onclick="copyText('乞')">乞 <span class="copy-badge">COPIAR</span></div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
 
-</main>
+<div id="toast">¡Copiado al portapapeles!</div>
 
 <footer>
-<hr>
-<p>Este sitio es informativo e independiente. No está afiliado a Garena ni a Roblox Corporation.</p>
+    &copy; 2026 Generador Insano - Sin bases de datos externas, todo en uno.
 </footer>
+
+<script>
+    // Datos de ejemplo para simular la "completitud"
+    const popularNicks = [
+        "꧁༒☬Insano☬༒꧂", "亗 TOXICO 亗", "⚡ N I T R O ⚡", 
+        "SᴷS┃LUCIFER", "꧁HACKER꧂", "V I P Σ R", 
+        "ＭＡＦＩＡ", "Ghost-Rider", "Darkness", "ツ ØMΞGΛ"
+    ];
+
+    const decorations = [
+        ["꧁", "꧂"], ["亗", "亗"], ["⚡", "⚡"], ["†", "†"], 
+        ["[", "]"], ["(◣_◢)", ""], ["〆", "〆"], ["( ͡° ͜ʖ ͡°)", ""]
+    ];
+
+    // Cargar nicks populares al inicio
+    const popularContainer = document.getElementById('popularList');
+    popularNicks.forEach(nick => {
+        const div = document.createElement('div');
+        div.className = 'nick-item';
+        div.innerHTML = `<span>${nick}</span> <span class="copy-badge">COPIAR</span>`;
+        div.onclick = () => copyText(nick);
+        popularContainer.appendChild(div);
+    });
+
+    // Generar nicks personalizados basados en el input
+    function customNick() {
+        const val = document.getElementById('userInput').value;
+        const container = document.getElementById('customGenerated');
+        if(!val) return alert("Escribe un nombre primero");
+
+        container.innerHTML = ""; // Limpiar
+        
+        decorations.forEach(dec => {
+            const fullNick = `${dec[0]}${val}${dec[1]}`;
+            const div = document.createElement('div');
+            div.className = 'nick-item';
+            div.innerHTML = `<span>${fullNick}</span> <span class="copy-badge">COPIAR</span>`;
+            div.onclick = () => copyText(fullNick);
+            container.appendChild(div);
+        });
+    }
+
+    // Función para copiar al portapapeles
+    function copyText(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 2000);
+        });
+    }
+</script>
 
 </body>
 </html>
